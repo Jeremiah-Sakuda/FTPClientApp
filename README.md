@@ -14,8 +14,8 @@ Installation
 Clone the repository:
 bash
 git clone https://github.com/Jeremiah-Sakuda/FTPClientApp.git
-Build the Project:
 
+Build the Project:
 Open the project in your preferred C++ IDE.
 Ensure that you have the Winsock development library installed.
 Compile and build the project.
