@@ -1,42 +1,47 @@
-FTP Client Application
+# FTP Client in C++ using Winsock
 
-Overview
-This project implements a simple FTP (File Transfer Protocol) client using C++ and the Winsock library on the Windows platform. The client is capable of connecting to an FTP server, navigating the file system, and transferring files. 
+This project implements a simple FTP (File Transfer Protocol) client using Winsock for Windows. The client allows you to connect to an FTP server, log in with a username and password, list directory contents, and close the connection.
 
-Features
-File Download: Retrieve files from the server.
-File Upload: Upload files to the server.
-File System Navigation: Browse and navigate directories on the server.
-Winsock API: Utilizes the Winsock API for network communication on Windows.
+## Features
 
-Installation
-Clone the repository:
-bash
-git clone https://github.com/Jeremiah-Sakuda/FTPClientApp.git
+- Connects to an FTP server via TCP on port 21
+- Sends basic FTP commands (USER, PASS, LIST, QUIT)
+- Receives and displays server responses
+- Supports listing of directory contents
+- Gracefully closes the connection and cleans up Winsock resources
 
-Build the Project:
-Open the project in your preferred C++ IDE.
-Ensure that you have the Winsock development library installed.
-Compile and build the project.
+## Prerequisites
 
-Usage
-Run the application:
-Execute the compiled FTP client.
-Provide the server's IP address and port to connect.
+- Windows operating system
+- Microsoft Visual Studio or any C++ IDE that supports Winsock
+- Basic understanding of C++ and networking concepts
 
-Commands:
-GET [filename]: Download a file from the server.
-PUT [filename]: Upload a file to the server.
-LIST: List the files in the current directory.
-CD [directory]: Change the directory on the server.
-PWD: Print the working directory.
-QUIT: Close the connection and exit the application.
+## How to Build
 
-Challenges and Solutions
-Network Latency: Handling network delays during file transfers by implementing timeout mechanisms.
-Concurrency: Managing multiple file transfers simultaneously using multi-threading.
+1. Clone the repository or download the source code.
+2. Open the project in your preferred IDE (e.g., Microsoft Visual Studio).
+3. Make sure you have the `ws2_32.lib` library linked in your project settings as it is required for Winsock functions.
+4. Build the project.
 
-Future Enhancements
-GUI Support: Add a graphical user interface for ease of use.
-Extended Protocols: Support for additional protocols like SFTP (Secure FTP).
-Cross-Platform Compatibility: Adapt the application to work on Linux and macOS.
+## How to Run
+
+1. After building the project, run the executable. The client will:
+   - Initialize Winsock.
+   - Connect to the FTP server.
+   - Log in using the provided credentials.
+   - List the contents of the directory.
+   - Close the connection.
+
+### Example Usage
+
+The program connects to a public FTP server (`ftp.dlptest.com`) with the username `dlpuser` and password `rNrKYTX9g7z3RgJRmxWuGHbeu`:
+
+```bash
+Client: USER dlpuser
+Server: 331 User dlpuser OK. Password required
+Client: PASS rNrKYTX9g7z3RgJRmxWuGHbeu
+Server: 230 OK. Current restricted directory is /
+Client: LIST
+Server: drwxr-xr-x   2 ftp      ftp          4096 Mar 18 2021 test-directory
+Client: QUIT
+Server: 221 Goodbye.
